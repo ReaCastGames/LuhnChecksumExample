@@ -1,92 +1,65 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class ChecksumUnitTests {
 
-    @org.junit.jupiter.api.Test
+    boolean checkAccountNumberIsValid(String accountNumber){
+        Checksum checksum = new Checksum();
+        return checksum.checkAccountValidity(accountNumber);
+    }
+
+    @Test
     void validAccountSevenDigits() {
-        Checksum checksum = new Checksum();
-        String accountNumber = "1597533";
-        boolean validAccount = checksum.checkAccountValidity(accountNumber);
-        Assertions.assertTrue(validAccount);
+        Assertions.assertTrue(checkAccountNumberIsValid("1597533"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void validAccountElevenDigits(){
-        Checksum checksum = new Checksum();
-        String accountNumber = "79927398713";
-        boolean validAccount = checksum.checkAccountValidity(accountNumber);
-        Assertions.assertTrue(validAccount);
+        Assertions.assertTrue(checkAccountNumberIsValid("79927398713"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void validAccountSixteenDigits(){
-        Checksum checksum = new Checksum();
-        String accountNumber = "4556737586899855";
-        boolean validAccount = checksum.checkAccountValidity(accountNumber);
-        Assertions.assertTrue(validAccount);
+        Assertions.assertTrue(checkAccountNumberIsValid("4556737586899855"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void invalidAccountSevenDigits(){
-        Checksum checksum = new Checksum();
-        String accountNumber = "2739871";
-        boolean validAccount = checksum.checkAccountValidity(accountNumber);
-        Assertions.assertFalse(validAccount);
+        Assertions.assertFalse(checkAccountNumberIsValid("2739871"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void invalidAccountElevenDigits(){
-        Checksum checksum = new Checksum();
-        String accountNumber = "49927398717";
-        boolean validAccount = checksum.checkAccountValidity(accountNumber);
-        Assertions.assertFalse(validAccount);
+        Assertions.assertFalse(checkAccountNumberIsValid("49927398717"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void invalidAccountSixteenDigits(){
-        Checksum checksum = new Checksum();
-        String accountNumber = "4024007109022143";
-        boolean validAccount = checksum.checkAccountValidity(accountNumber);
-        Assertions.assertFalse(validAccount);
+        Assertions.assertFalse(checkAccountNumberIsValid("4024007109022143"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void validWhitespaceRemoved(){
-        Checksum checksum = new Checksum();
-        String accountNumber = "   159 75 3   3 ";
-        boolean validAccount = checksum.checkAccountValidity(accountNumber);
-        Assertions.assertTrue(validAccount);
+        Assertions.assertTrue(checkAccountNumberIsValid("   159 75 3   3 "));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void invalidAlphabetCharactersUsedAtBeginning(){
-        Checksum checksum = new Checksum();
-        String accountNumber = "asdf1234";
-        boolean validAccount = checksum.checkAccountValidity(accountNumber);
-        Assertions.assertFalse(validAccount);
+        Assertions.assertFalse(checkAccountNumberIsValid("asdf1234"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void invalidAlphabetCharactersUsedAtEnd(){
-        Checksum checksum = new Checksum();
-        String accountNumber = "1234asdf";
-        boolean validAccount = checksum.checkAccountValidity(accountNumber);
-        Assertions.assertFalse(validAccount);
+        Assertions.assertFalse(checkAccountNumberIsValid("1234asdf"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void invalidSpecialCharactersUsedAtBeginning(){
-        Checksum checksum = new Checksum();
-        String accountNumber = "!@#1234";
-        boolean validAccount = checksum.checkAccountValidity(accountNumber);
-        Assertions.assertFalse(validAccount);
+        Assertions.assertFalse(checkAccountNumberIsValid("!@#1234"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void invalidSpecialCharactersUsedAtEnd(){
-        Checksum checksum = new Checksum();
-        String accountNumber = "1234!@#";
-        boolean validAccount = checksum.checkAccountValidity(accountNumber);
-        Assertions.assertFalse(validAccount);
+        Assertions.assertFalse(checkAccountNumberIsValid("1234!@#"));
     }
 }
